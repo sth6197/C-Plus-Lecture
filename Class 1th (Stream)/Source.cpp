@@ -49,8 +49,7 @@ int main()
 
 #pragma region 범위 지정 연산자
 	// 여러 범위에서 사용되는 식별자를 구분하는 데 사용하는
-	// 연산자 입니다.
-
+	// 연산자입니다.
 	char character = 'M';
 
 	std::cout << "character 변수의 값 : " << character << std::endl;
