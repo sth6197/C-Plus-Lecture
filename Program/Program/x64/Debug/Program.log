@@ -1,3 +1,2 @@
 ﻿  Program.cpp
-C:\Users\Pc\Desktop\C-PplusLecture\Program\Program.cpp(58,1): warning C4717: 'operator*': 모든 제어 경로에서 재귀적입니다. 함수로 인해 런타임 스택 오버플로가 발생합니다.
   Program.vcxproj -> C:\Users\Pc\Desktop\C-PplusLecture\Program\x64\Debug\Program.exe
