@@ -1,35 +1,111 @@
 ﻿#include <iostream>
-#include <set>
-
 
 using namespace std;
 
+class Item
+{
+private:
+	int price;
+
+public:
+	Item(int price)
+	{
+		cout << "Constructor" << endl;
+		this->price = price;
+	}
+
+	Item(Item& item)
+	{
+		cout << "Copy Constructor" << endl;
+		price = item.price;
+	}
+
+};
+
+class Card
+{
+public:
+	virtual void Show() = 0;
+	virtual void Skill() = 0;
+	virtual void Effect() = 0;
+};
+
+class Legend : Card
+{
+public:
+	void Show() override
+	{
+		cout << "Legend Card" << endl;
+	}
+
+	void Skill() override
+	{
+		cout << "Legend Skill" << endl;
+	}
+
+	void Effect() final
+	{
+		cout << "Legend Effect" << endl;
+	}
+};
+
+
+class Unique : Legend
+{
+public:
+	Unique()
+	{
+
+	}
+
+	//void Effect()
+	//{
+	//
+	//}
+
+};
+
+
 int main()
 {
-#pragma region 연관 컨테이너
-	// 컨테이너 내의 자료들이 규칙에 따라 정렬되어 있는 컨테이너입니다.
-	// Tree 구조
+#pragma region R Value & L Value
+	// L Value Type
+	/*
+	int data = 10;
 
-#pragma region set
+	int& left1 = data;
+	int& left2 = 20;			// 불가능
+	*/
+	
+	// R Value Type
+	/*
+	int count = 0;
 
-	std::set<int> set;
+	int&& right1 = 10;
+	//int&& right2 = count;		// 불가능
 
-	set.insert(50);
-	set.insert(10);
-	set.insert(80);
-	set.insert(30);
-	set.insert(65);
-	set.insert(45);
+	right1 = 30;
 
-	// set의 경우 KEY 값이 중복이 되면 값이 그대로 들어와 중복된 값에 덮어씌워집니다.
+	cout << "right1의 값 : " << right1 << endl;
+	*/
+#pragma endregion
 
+#pragma region 복사 생략(Copy Elision)
+	// 함수의 반환 값을 모두 사용하거나 초기화하는 경우에
+	// 생기는 불필요한 임시 객체를 최적화하거나 제거하는데 사용되는
+	// 컴파일러 기술입니다.
+
+	// Item item1(10000);
+	// 
+	// Item item2(item1);
+#pragma endregion
+
+#pragma region Final
 	
 
-#pragma endregion
-
-
 
 #pragma endregion
+
 
 
 	return 0;

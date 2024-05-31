@@ -1,2 +1,3 @@
 ﻿  Program.cpp
+C:\Users\Pc\Desktop\C-PplusLecture\Program\Program.cpp(59,7): warning C4930: 'Item item3(Item (__cdecl *)(void))': 프로토타입 함수가 호출되지 않았습니다. 변수 정의로 사용하려고 한 것은 아닌지 확인하십시오.
   Program.vcxproj -> C:\Users\Pc\Desktop\C-PplusLecture\Program\x64\Debug\Program.exe
