@@ -9,11 +9,26 @@ using namespace std;
 #define LEFT 75
 #define RIGHT 77
 
+
 void Position(int x, int y)
 {
 	COORD pos = { x,y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
+
+class Item
+{
+private:
+	int price;
+	const char* name;
+
+public:
+	void SetData(int price, const char* name)
+	{
+		this->price = price;
+		this->name = name;
+	}
+};
 
 class Input
 {
@@ -37,7 +52,7 @@ public:
 		cout << shape;
 	}
 
-	void GetKey()
+	void GetKey(int & index)
 	{
 		key = _getch();
 		if (key == -32)
@@ -45,17 +60,31 @@ public:
 			key = _getch();
 			switch (key)
 			{
-			case UP: y -= 2;
+			case UP: if (y > 1)	{ y -= 2; index -= 8; }
 				break;
-			case LEFT: x -= 2;
+			case LEFT: if (x > 0) { x -= 2; index -= 2; }
 				break;
-			case RIGHT: x += 2;
+			case RIGHT: if (x < 6) { x += 2; index += 2; }
 				break;
-			case DOWN: y += 2;
+			case DOWN: if (y < 5) { y += 2; index += 8; }
 				break;
+			}
+		
+		}
+		
+	}
+
+	void Select(Item* item[], int &index)
+	{
+		if (GetAsyncKeyState(VK_SPACE))
+		{
+			if (item[index / 2] == nullptr)		// 해당 index가 nulllptr 이라면
+			{
+				item[index / 2] = new Item();	// new Item 값 할당
 			}
 		}
 	}
+
 };
 
 class Inventory
@@ -63,33 +92,62 @@ class Inventory
 private:
 	int size;
 	int width;
+	int index;
 
 	Input input;
+	Item* item[12];
 public:
 	Inventory(int size, int width)
 	{
+		index = 0;
 		this->size = size;
 		this->width = width;
+
+		for (int i = 0; i < size; i++)
+		{
+			item[i] = nullptr;
+		}
 	}
 
 	void Undate()
 	{
-		input.GetKey();
+		input.GetKey(index);
+		input.Select(item, index);
 	}
 
 	void Renderer()
 	{
 		Position(0, 0);
-
+		
 		for (int i = 0; i < size; i++)
 		{
 			if(i != 0 && i % width == 0)
 			{
 				cout << endl << endl;
 			}
-			cout << "□";
+
+			if (item[i] == nullptr)
+			{
+				cout << "□";
+			}
+			else
+			{
+				cout << "■";
+			}
+			//cout << "□";
 		}
 		input.Renderer();
+	}
+
+	~Inventory()
+	{
+		for (int i = 0; i < 12; i++)
+		{
+			if (item[i] != nullptr)
+			{
+				delete item[i];
+			}
+		}
 	}
 };
 
@@ -97,21 +155,15 @@ public:
 int main()
 {
 	Inventory inventory(12, 4);
-
+	
 	while(true)
 	{ 
 		inventory.Renderer();
 	
 		inventory.Undate();
-
+		
 		system("cls");
 	}
-
-	
-
-
-
-
 
 	return 0;
 }

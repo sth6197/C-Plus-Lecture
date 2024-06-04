@@ -1,4 +1,4 @@
 ﻿  Program.cpp
-C:\Users\Pc\Desktop\C-PplusLecture\Program\Program.cpp(14,16): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\Pc\Desktop\C-PplusLecture\Program\Program.cpp(14,18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\Pc\Desktop\C-PplusLecture\Program\Program.cpp(15,16): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+C:\Users\Pc\Desktop\C-PplusLecture\Program\Program.cpp(15,18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
   Program.vcxproj -> C:\Users\Pc\Desktop\C-PplusLecture\Program\x64\Debug\Program.exe
